@@ -1,2 +1,10 @@
 # BOT-Telegram-Arduino
-Parcial de Grupo de David Morales, Angel Ortez y Jorge Villalobos
+
+# Parcial de Registro 2
+# Grupo
+* David Morales
+* Angel Ortez
+* Jorge Villalobos
+
+
+# [Paketaxo](https://goo.gl/SsAhv)
