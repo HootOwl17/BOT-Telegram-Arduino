@@ -5,6 +5,7 @@
 * David Morales
 * Angel Ortez
 * Jorge Villalobos
+* Werner Urquilla
 
 
 # [Paketaxo](https://goo.gl/SsAhv)
