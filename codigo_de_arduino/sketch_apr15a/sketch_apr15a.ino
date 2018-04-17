@@ -15,7 +15,7 @@ if (digitalRead(boton) == 0){
   if (Serial.available()){
     char LETRA = Serial.read();
     if (LETRA == "H"){
-      while (boton != 'H' ) {
+      while (boton == 'H' ) {
         /* code */
         digitalWrite(led, HIGH);
         delay(1000);
