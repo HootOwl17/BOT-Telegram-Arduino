@@ -22,6 +22,7 @@ if (digitalRead(boton) == 0){
         digitalWrite(led, LOW);
         delay(1000);
       }
+      break;
         }
       }
     }
