@@ -7,34 +7,33 @@ const token = '517895758:AAHo_YwJVayge-P6GiYYw2ybe8xtwRCGbZQ';
 // Create a bot that uses 'polling' to fetch new updates
 const bot = new TelegramBot(token, {polling: true});
 
-// Matches "/echo [whatever]"
-bot.onText(/\/echo (.+)/, (msg, match) => {
-  // 'msg' is the received Message from Telegram
-  // 'match' is the result of executing the regexp above on the text content
-  // of the message
+var IdMiChat = HOOTOWLBOT;//cambiar por tu ID del chat
 
-  const chatId = msg.chat.id;
-  const resp = match[1]; // the captured "whatever"
-  port.Write(resp);
-
-  // send back the matched "whatever" to the chat
-  bot.sendMessage(chatId, resp);
+var SerialPort = require('serialport');
+var MiPuerto = new SerialPort('/dev/ttyUSB0', {
+  baudRate: 9600,
+  autoOpen: true
 });
 
-// Listen for any kind of message. There are different kinds of
-// messages.
 bot.on('message', (msg) => {
   const chatId = msg.chat.id;
-
-  // send a message to the chat acknowledging receipt of their message
-  bot.sendMessage(chatId, 'Received your message');
+  console.log("El ID del char" + chatId);
+  var Mensaje = msg.text;
+  if (Mensaje == "Contador") {
+    console.log("Iniciando Contador");
+    console.log("Detenerlo con Boton");
+    bot.sendMessage(chatId, 'Iniciando Contador');
+    bot.sendMessage(chatId, 'Detenerlo con Boton');
+    MiPuerto.write("H");
+  }
 });
 
-var OpcionesSerial = {
-  baudRate:9680,
-  AutoOpen= true
-}
+MiPuerto.setEncoding('utf8');
 
-var Puerto = "/COMXX";
-
-var Port = new Serial(Puerto,OpcionesSerial);
+MiPuerto.on('data', function(data) {
+  console.log("Lo que entro es " + data);
+  if (data[0] == 'H') {
+    console.log("Boton Precionado");
+    bot.sendMessage(IdMiChat, "Contador Detenido");
+  }
+});

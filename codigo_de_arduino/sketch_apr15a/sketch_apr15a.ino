@@ -4,7 +4,7 @@ int led = 9;
 void setup() {
 pinMode(boton, INPUT_PULLUP);
 pinMode(led,OUTPUT);
-Serial.begin(9600); 
+Serial.begin(9600);
 }
 
 void loop() {
@@ -14,11 +14,14 @@ if (digitalRead(boton) == 0){
   }
   if (Serial.available()){
     char LETRA = Serial.read();
-    if (LETRA == "HOLA A TODOS"){
-      digitalWrite(led, HIGH);
-      }
-      else if (LETRA == 'L'){
+    if (LETRA == "H"){
+      while (boton != 'H' ) {
+        /* code */
+        digitalWrite(led, HIGH);
+        delay(1000);
         digitalWrite(led, LOW);
+        delay(1000);
+      }
         }
       }
     }
